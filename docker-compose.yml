@@ -1,0 +1,24 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: pokedex_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_dados:/data/db
+
+  postgres:
+    image: postgres:16
+    container_name: pokedex_postgres
+    environment:
+      POSTGRES_USER: pokedex
+      POSTGRES_PASSWORD: pokedex
+      POSTGRES_DB: pokedex
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_dados:/var/lib/postgresql/data
+
+volumes:
+  mongo_dados:
+  postgres_dados:
